@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="800.0" prefWidth="826.0" style="-fx-background-color: #1e1e1e;" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <!-- Üst Menü -->
+    <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="20" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Label style="-fx-text-fill: white; -fx-font-size: 16;" text="Tüm Kategoriler" />
+        <TextField prefWidth="400" promptText="Arama Yap..." />
+        <Button style="-fx-background-color: red; -fx-text-fill: white;" text="Sat" />
+    </HBox>
+    <Button fx:id="ilanVerButton" style="-fx-background-color: blue; -fx-text-fill: white;" text="İlan Ver" />
+    <HBox alignment="CENTER_LEFT" prefHeight="50.0" spacing="20" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+        <Label style="-fx-text-fill: white; -fx-font-size: 16;" text="Tüm Kategoriler" />
+        <TextField prefWidth="400" promptText="Arama Yap..." />
+        <Button style="-fx-background-color: red; -fx-text-fill: white;" text="Sat" />
+        <Button fx:id="ilanVerButton" style="-fx-background-color: blue; -fx-text-fill: white;" text="İlan Ver" />
+    </HBox>
+
+    <!-- Yan Menü (Kategoriler, Konum, Fiyat) -->
+    <VBox prefWidth="250" spacing="20" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="70.0">
+        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Kategoriler" />
+        <ComboBox promptText="Kategori Seç" />
+
+        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Konum" />
+        <VBox spacing="10">
+            <ComboBox promptText="İl Seç" />
+            <ComboBox promptText="İlçe Seç" />
+            <Button style="-fx-background-color: #2e8b57; -fx-text-fill: white;" text="Mevcut Konumu Kullan" />
+        </VBox>
+
+        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Fiyat" />
+        <HBox spacing="10">
+            <TextField promptText="Min" />
+            <TextField promptText="Max" />
+        </HBox>
+
+        <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="İlan Tarihi" />
+        <VBox spacing="10">
+            <RadioButton style="-fx-text-fill: white;" text="Tümü" />
+            <RadioButton style="-fx-text-fill: white;" text="Son 24 Saat" />
+            <RadioButton style="-fx-text-fill: white;" text="Son 3 Gün" />
+            <RadioButton style="-fx-text-fill: white;" text="Son 7 Gün" />
+            <RadioButton style="-fx-text-fill: white;" text="Son 15 Gün" />
+        </VBox>
+        <TextField promptText="Kelime ile Filtrele" />
+        <Button style="-fx-background-color: red; -fx-text-fill: white;" text="Filtreleri Temizle" />
+    </VBox>
+
+    <!-- İlanlar Alanı -->
+    <GridPane hgap="20" vgap="20" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="280.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="70.0">
+        <!-- İlan Kartı 1 -->
+        <VBox spacing="10" style="-fx-background-color: #292929; -fx-padding: 10; -fx-border-color: #ffa500; -fx-border-width: 2;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="7.000 TL" />
+            <Label style="-fx-text-fill: white;" text="8 Ayar Pırlanta" />
+            <Label style="-fx-text-fill: gray;" text="BEYOĞLU / İSTANBUL" />
+            <Label style="-fx-text-fill: white;" text="Bugün" />
+        </VBox>
+
+        <!-- İlan Kartı 2 -->
+        <VBox spacing="10" style="-fx-background-color: #292929; -fx-padding: 10; -fx-border-color: #ffa500; -fx-border-width: 2;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="4.500 TL" />
+            <Label style="-fx-text-fill: white;" text="Kuş Tüyü Mont Zara M Beden" />
+            <Label style="-fx-text-fill: gray;" text="BEYOĞLU / İSTANBUL" />
+            <Label style="-fx-text-fill: white;" text="2 Gün Önce" />
+        </VBox>
+
+        <!-- İlan Kartı 3 -->
+        <VBox spacing="10" style="-fx-background-color: #292929; -fx-padding: 10; -fx-border-color: #ffa500; -fx-border-width: 2;" GridPane.columnIndex="0" GridPane.rowIndex="1">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="9.750 TL" />
+            <Label style="-fx-text-fill: white;" text="Electrolux Tezgah Altı Mini Buzdolabı" />
+            <Label style="-fx-text-fill: gray;" text="BEYOĞLU / İSTANBUL" />
+            <Label style="-fx-text-fill: white;" text="Dün" />
+        </VBox>
+
+        <!-- İlan Kartı 4 -->
+        <VBox spacing="10" style="-fx-background-color: #292929; -fx-padding: 10; -fx-border-color: #ffa500; -fx-border-width: 2;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16;" text="30.000 TL" />
+            <Label style="-fx-text-fill: white;" text="iPhone 13 Pro Max" />
+            <Label style="-fx-text-fill: gray;" text="BEYOĞLU / İSTANBUL" />
+            <Label style="-fx-text-fill: white;" text="Bugün" />
+        </VBox>
+        <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+        </rowConstraints>
+    </GridPane>
+</AnchorPane>

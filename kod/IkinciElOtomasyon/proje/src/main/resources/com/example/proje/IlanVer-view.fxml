@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" spacing="20" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <Label text="Yeni Ürün Ekle" style="-fx-font-size: 18; -fx-text-fill: black;" />
+    <TextField fx:id="idField" promptText="Ürün ID" />
+    <TextField fx:id="nameField" promptText="Ürün İsmi" />
+    <TextField fx:id="priceField" promptText="Ürün Fiyatı" />
+    <ComboBox fx:id="categoryComboBox" promptText="Kategori Seç" />
+    <TextField fx:id="extraField" promptText="Ekstra Bilgi (Opsiyonel)" />
+    <Button fx:id="addButton" text="Ekle" style="-fx-background-color: green; -fx-text-fill: white;" />
+</VBox>

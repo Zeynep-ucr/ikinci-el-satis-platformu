@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.ScrollPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/11.0.14-internal"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.example.proje.controller.MainController"
+           style="-fx-font-family: 'Arial';">
+
+    <!-- ANA SAYFA (ScrollPane -> AnchorPane) -->
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true"
+                visible="true"
+                style="-fx-background: #2e2e2e; -fx-padding: 0;">
+        <AnchorPane fx:id="mainPage" prefWidth="1600"
+                    style="-fx-background-color: #1e1e1e;">
+
+            <!-- ÜST KISIM: Arama, Favoriler, Tümü, İlan Ver -->
+            <HBox alignment="CENTER_LEFT" spacing="10"
+                  style="-fx-padding: 10;"
+                  AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+
+                <!-- Label: Tüm Kategoriler -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 16;" text="Tüm Kategoriler" />
+
+                <!-- Arama Kutusu -->
+                <TextField fx:id="searchField" promptText="Arama Yap..." prefWidth="250" />
+
+                <!-- Ara butonu -->
+                <Button text="Ara" style="-fx-background-color: red; -fx-text-fill: white;"
+                        onAction="#applyFilters"/>
+
+                <!-- Spacer to push other buttons to the right -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Favoriler & Tümü & İlan Ver butonları -->
+                <Button text="Favoriler" style="-fx-background-color: orange; -fx-text-fill: white;"
+                        onAction="#showFavorites"/>
+                <Button text="Tümü" style="-fx-background-color: #444444; -fx-text-fill: white;"
+                        onAction="#showAll"/>
+                <Button fx:id="switchToIlanVerButton" style="-fx-background-color: blue; -fx-text-fill: white;"
+                        text="İlan Ver" onAction="#switchToIlanVerForAdd" />
+            </HBox>
+
+            <!-- SOL FİLTRE MENÜSÜ -->
+            <VBox spacing="10" prefWidth="250"
+                  style="-fx-padding: 10;"
+                  AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="0.0">
+
+                <!-- Kategori, Konum ve Fiyat (İlan Tarihinden Üstte) -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Kategoriler" />
+                <ComboBox fx:id="categoryFilterComboBox" promptText="Kategori Seç" />
+
+                <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Konum" />
+                <ComboBox fx:id="cityComboBox" promptText="İl Seç" />
+                <ComboBox fx:id="districtComboBox" promptText="İlçe Seç" />
+                <Button style="-fx-background-color: #2e8b57; -fx-text-fill: white;"
+                        text="Mevcut Konumu Kullan" onAction="#useCurrentLocation"/>
+
+                <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="Fiyat" />
+                <HBox spacing="10">
+                    <TextField fx:id="minPriceField" promptText="Min" />
+                    <TextField fx:id="maxPriceField" promptText="Max" />
+                </HBox>
+
+                <!-- İlan Tarihi (RadioButton'lar) -->
+                <Label style="-fx-text-fill: white; -fx-font-size: 14;" text="İlan Tarihi" />
+                <RadioButton fx:id="allRadioButton" style="-fx-text-fill: white;" text="Tümü" />
+                <RadioButton fx:id="last24HoursRadioButton" style="-fx-text-fill: white;" text="Son 24 Saat" />
+                <RadioButton fx:id="last3DaysRadioButton" style="-fx-text-fill: white;" text="Son 3 Gün" />
+                <RadioButton fx:id="last7DaysRadioButton" style="-fx-text-fill: white;" text="Son 7 Gün" />
+                <RadioButton fx:id="last15DaysRadioButton" style="-fx-text-fill: white;" text="Son 15 Gün" />
+
+                <!-- Filtrele butonu -->
+                <Button text="Filtrele" style="-fx-background-color: #2eb82e; -fx-text-fill: white;"
+                        onAction="#applyFilters"/>
+
+                <!-- Filtreleri Temizle butonu -->
+                <Button text="Filtreleri Temizle" style="-fx-background-color: red; -fx-text-fill: white;"
+                        onAction="#clearFilters"/>
+            </VBox>
+
+            <!-- İLANLAR GRIDPANE: 5 sütun, vgap/hgap = 20 -->
+            <GridPane fx:id="ilanlarGridMain" hgap="20" vgap="20"
+                      style="-fx-padding: 10;"
+                      AnchorPane.topAnchor="60.0" AnchorPane.leftAnchor="270.0"
+                      AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
+        </AnchorPane>
+    </ScrollPane>
+
+    <!-- İLAN VER SAYFASI (İKİNCİ EKRAN) -->
+    <AnchorPane fx:id="ilanVerPage" prefWidth="900" prefHeight="700"
+                style="-fx-background-color: #f5f5f5;" visible="false">
+
+        <VBox alignment="CENTER" spacing="15"
+              style="-fx-padding: 30;"
+              AnchorPane.topAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+
+            <Label text="Yeni Ürün Ekle" style="-fx-font-size: 18; -fx-text-fill: black;" />
+
+            <TextField fx:id="idField" promptText="Ürün ID" />
+            <TextField fx:id="nameField" promptText="Ürün İsmi" />
+            <TextField fx:id="priceField" promptText="Ürün Fiyatı" />
+            <ComboBox fx:id="categoryComboBox" promptText="Kategori Seç" />
+
+            <!-- Ekstra Bilgi -->
+            <TextField fx:id="extraField" promptText="Ekstra Bilgi (Opsiyonel)" />
+
+            <!-- Konum Bilgisi (il, ilçe) -->
+            <ComboBox fx:id="ilanVerCityComboBox" promptText="İl Seç" />
+            <ComboBox fx:id="ilanVerDistrictComboBox" promptText="İlçe Seç" />
+
+            <!-- Fotoğraf Seçme alanı -->
+            <HBox spacing="10">
+                <ImageView fx:id="photoPreview" fitHeight="100" fitWidth="100"/>
+                <Button text="Fotoğraf Seç" style="-fx-background-color: #007acc; -fx-text-fill: white;"
+                        onAction="#choosePhoto"/>
+            </HBox>
+
+            <HBox spacing="10">
+                <Button text="Ekle" style="-fx-background-color: green; -fx-text-fill: white;"
+                        onAction="#addUrun"/>
+                <Button text="Geri" style="-fx-background-color: gray; -fx-text-fill: white;"
+                        onAction="#switchToMainPage"/>
+            </HBox>
+        </VBox>
+    </AnchorPane>
+</StackPane>
